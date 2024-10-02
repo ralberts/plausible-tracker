@@ -31,6 +31,11 @@ export type PlausibleInitOptions = {
    * Defaults to `'https://plausible.io'`
    */
   readonly apiHost?: string;
+  
+  /**
+   * Add custom request headers.
+   */
+  readonly headers?: { readonly [headerName: string]: string } | null;
 };
 
 /**
@@ -237,6 +242,7 @@ export default function Plausible(
     referrer: document.referrer || null,
     deviceWidth: window.innerWidth,
     apiHost: 'https://plausible.io',
+    headers: null,
     ...defaults,
   });
 

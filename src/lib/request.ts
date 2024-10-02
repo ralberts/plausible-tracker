@@ -75,6 +75,11 @@ export function sendEvent(
   const req = new XMLHttpRequest();
   req.open('POST', `${data.apiHost}/api/event`, true);
   req.setRequestHeader('Content-Type', 'text/plain');
+  if (data?.headers) {
+    Object.entries(data.headers).forEach(([key, value]) => {
+      req.setRequestHeader(key, value);
+    });
+  }
   req.send(JSON.stringify(payload));
   // eslint-disable-next-line functional/immutable-data
   req.onreadystatechange = () => {
